@@ -1,0 +1,49 @@
+version: "3.1"
+
+services:
+  wordpress:
+    build: ./
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: test
+      WORDPRESS_DB_PASSWORD: test
+      WORDPRESS_DB_NAME: test
+      WORDPRESS_DEBUG: "true"
+    volumes:
+      - ./:/var/www/html
+      - ./wp-install.sh:/tmp/wp-install.sh
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+      MYSQL_RANDOM_ROOT_PASSWORD: "1"
+    volumes:
+      - ./db:/var/lib/mysql
+
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - db
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOSTS: db
+      PMA_USER: test
+      PMA_PASSWORD: test
+    ports:
+      - 3000:80
+
+  smtp:
+    image: schickling/mailcatcher
+    ports:
+      - 1080:1080
+      - 1025:1025
+    depends_on:
+      - wordpress

@@ -1,0 +1,9 @@
+@use "sass:math";
+@use "../../mixin" as *;
+
+@include mq(pc){
+
+  header{
+    height: 150px;
+  }
+}
