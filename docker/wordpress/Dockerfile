@@ -2,7 +2,7 @@
 
 FROM wordpress:6.1.1-php8.2-apache
 
-COPY apache2.conf /etc/apache2/apache2.conf
+COPY /docker/wordpress/apache2.conf /etc/apache2/apache2.conf
 
 RUN apt-get update -y \
     && apt-get install vim -y \

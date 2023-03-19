@@ -1,8 +1,8 @@
-version: "3.1"
+version: '3.1'
 
 services:
   wordpress:
-    build: ./
+    build: ./docker/wordpress/
     restart: always
     ports:
       - 8080:80
@@ -11,22 +11,29 @@ services:
       WORDPRESS_DB_USER: test
       WORDPRESS_DB_PASSWORD: test
       WORDPRESS_DB_NAME: test
-      WORDPRESS_DEBUG: "true"
+      WORDPRESS_DEBUG: 'true'
     volumes:
-      - ./:/var/www/html
-      - ./wp-install.sh:/tmp/wp-install.sh
+      - ./html:/var/www/html
+      - ./docker/wordpress/wp-install.sh:/tmp/wp-install.sh
 
   db:
-    image: mysql:5.7
+    build: ./docker/db/
     restart: always
     environment:
+      MYSQL_ROOT_PASSWORD: test
       MYSQL_DATABASE: test
       MYSQL_USER: test
       MYSQL_PASSWORD: test
-      MYSQL_RANDOM_ROOT_PASSWORD: "1"
+      MYSQL_RANDOM_ROOT_PASSWORD: 1
+      TZ: Asia/Tokyo
     volumes:
-      - ./db:/var/lib/mysql
-
+      - ./docker/db/var/lib/mysql:/var/lib/mysql
+      - ./docker/db/etc/mysql/conf.d:/etc/mysql/conf.d
+      - ./docker/db/var/log/mysql:/var/log/mysql
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -uroot -p$$MYSQL_ROOT_PASSWORD
+    ports:
+      - 3306:3306
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin

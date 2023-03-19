@@ -1,0 +1,8 @@
+/docker/db/var/lib
+
+/html/*
+!/html/wp-content
+/html/wp-content/*
+!/html/wp-content/themes/
+/html/wp-content/themes/*
+!/html/wp-content/themes/boilerplate/
