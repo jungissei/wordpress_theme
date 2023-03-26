@@ -1,6 +1,6 @@
 # @see https://hub.docker.com/_/wordpress
 
-FROM wordpress:6.1.1-php8.2-apache
+FROM wordpress:6.1.1-php8.0-apache
 
 COPY /docker/wordpress/apache2.conf /etc/apache2/apache2.conf
 
