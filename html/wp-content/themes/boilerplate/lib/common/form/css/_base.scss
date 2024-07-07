@@ -1,0 +1,48 @@
+@use "sass:math";
+@use "sass:color";
+@use "../../mixin" as *;
+
+
+$colorBlack: #000 !default;
+$colorWhite: #fff !default;
+$colorVeryLightGrey: #cccccc !default;
+$colorSherpaBlue: #055160 !default;
+$colorPohutukawa: #5f071c !default;
+$colorOnahau: #cff4fc !default;
+$colorSkyBlue: #81c3e2 !default;
+$colorSkyBlueRgb: (
+  color.red($colorSkyBlue),
+  color.green($colorSkyBlue),
+  color.blue($colorSkyBlue)
+) !default;
+$colorPinkLace: #fbd0da !default;
+
+
+$font_size_default: 16px !default;
+
+.wpcf7-form {
+
+  // フォームブロックの背景色
+  --bg-form-block: #{$colorWhite};
+
+  // 任意入力用ラベル
+  --color-form-label-option: #{$colorSherpaBlue};
+  --bg-form-label-option: #{$colorOnahau};
+
+  // 必須入力用ラベル
+  --color-form-label-require: #{$colorPohutukawa};
+  --bg-form-label-require: #{$colorPinkLace};
+
+
+  // フォームアイテム
+  --fs-form-item: $font_size_default;
+  --color-form-item: #{$colorBlack};
+  --color-form-item-placeholder: #{$colorVeryLightGrey};
+  --bg-form-item: #{$colorWhite};
+  --border-form-item: #{$colorVeryLightGrey};
+  --border-form-item-active: #{$colorSkyBlueRgb};
+
+  // 送信ボタン
+  --color-form-submit: #{$colorWhite};
+  --bg-form-submit: #{$colorBlack};
+}

@@ -1,0 +1,77 @@
+@use "sass:math";
+@use "../../../mixin" as *;
+@use "./../settings" as *;
+@use "./settings" as *;
+
+
+@include mq($device){
+  .form_table {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+
+    .table_tr {
+      display: flex;
+      justify-content: space-between;
+
+      .table_fieldset{
+        display: contents;
+      }
+
+      .table_th,
+      .table_td {
+        font-weight: normal;
+      }
+
+      &:not(:last-child) {
+        .table_td {
+          padding: 0 0 20px 20px;
+        }
+      }
+
+      &:last-child {
+        .table_td {
+          padding-left: 20px;
+        }
+      }
+
+      .table_th {
+        position: relative;
+        padding: 15px 0 0 52px;
+        width: 200px;
+
+        .form_label {
+          position: absolute;
+          top: 15px;
+          left: 0;
+          font-size: 13px;
+          padding: 2px 8px;
+          font-weight: 700;
+        }
+
+        &:not(.require) {
+          .form_label {
+            color: var(--color-form-label-option);
+            background-color: var(--bg-form-label-option);
+          }
+        }
+
+        &.require {
+          .form_label {
+            background-color: var(--bg-form-label-require);
+            color: var(--color-form-label-require);
+          }
+        }
+      }
+
+      .table_td {
+        width: calc(100% - 215px);
+      }
+    }
+
+    .td_sub_ttl{
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+  }
+}

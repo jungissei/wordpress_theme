@@ -1,0 +1,16 @@
+@use "sass:math";
+@use "../../../mixin" as *;
+@use "./../settings" as *;
+@use "./settings" as *;
+
+
+@include mq($device){
+
+  .wpcf7-not-valid-tip{
+    padding-top: 5px;
+  }
+
+  .wpcf7 form .wpcf7-response-output{
+    margin: 0 auto;
+  }
+}

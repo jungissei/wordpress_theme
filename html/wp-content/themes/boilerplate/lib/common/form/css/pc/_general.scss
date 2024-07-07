@@ -1,0 +1,24 @@
+@use "sass:math";
+@use "../../../mixin" as *;
+@use "./../settings" as *;
+@use "./settings" as *;
+
+
+@include mq($device){
+
+  // --------------------------------------
+  // Block form
+  // --------------------------------------
+  .wpcf7-form{
+    background-color: var(--bg-form-block);
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: block;
+  }
+
+  .block_form{
+    max-width: 1000px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}

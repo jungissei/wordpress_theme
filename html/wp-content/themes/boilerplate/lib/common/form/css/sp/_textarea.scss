@@ -1,0 +1,12 @@
+@use "sass:math";
+@use "../../../mixin" as *;
+@use "./../settings" as *;
+@use "./settings" as *;
+
+
+@include mq($device){
+
+  .wpcf7-form{
+
+  }
+}

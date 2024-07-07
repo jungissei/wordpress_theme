@@ -1,5 +1,5 @@
 wp.domReady(function() {
-  restrict_gutenberg_blocks();
+  // restrict_gutenberg_blocks();
 });
 
 /**

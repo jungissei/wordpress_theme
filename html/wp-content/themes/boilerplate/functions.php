@@ -80,13 +80,15 @@ require_once(get_stylesheet_directory().'/includes/dashboard_widget.php');
 // Setting 管理画面の記事一覧
 require_once(get_stylesheet_directory().'/includes/admin-post-list.php');
 
+// Setting 管理画面の記事一覧
+require_once(get_stylesheet_directory().'/includes/contact-form-7.php');
+
 
 // ----------------------------------------------------------------------------
 // Theme assets
 // ----------------------------------------------------------------------------
-// Enqueue css/js file
+// サイト共通CSS＆JS
 add_action( 'wp_enqueue_scripts', function () {
-
-  wp_enqueue_style( 'theme-common', get_theme_file_uri( '/lib/common/css/style.css' ), array(), '0' );
-  wp_enqueue_script( 'theme-common', get_theme_file_uri( '/lib/common/js/scripts.js' ), array('jquery'), 0);
+  wp_enqueue_style( 'site-common', get_theme_file_uri( '/lib/common/site/css/style.css' ), [], 0);
+  wp_enqueue_script( 'site-common', get_theme_file_uri( '/lib/common/site/js/scripts.js' ), ['jquery'], 0);
 });
