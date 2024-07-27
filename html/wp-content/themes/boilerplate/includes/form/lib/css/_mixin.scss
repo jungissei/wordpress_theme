@@ -1,0 +1,65 @@
+// ----------------------------------------------------------------------------
+// Media Query
+// ----------------------------------------------------------------------------
+$breakpoint: (
+  sp: 'screen and (max-width: 767px)',
+  pc: 'print, screen and (min-width: 768px)'
+);
+
+@mixin mq($bp) {
+  @media #{map-get($breakpoint, $bp)} {
+    @content;
+  }
+}
+
+
+// ----------------------------------------------------------------------------
+// Hover
+// ----------------------------------------------------------------------------
+@mixin hover {
+  @media (hover: hover) and (pointer: fine)  {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+
+// ----------------------------------------------------------------------------
+// Form Item
+// ----------------------------------------------------------------------------
+// フォームコントロールのアクティブ状態のスタイル
+@mixin form_item_active {
+  border-color: rgb(var(--border-form-item-active));
+  box-shadow: 0 0 0 4px rgba(var(--border-form-item-active), 0.5);
+  outline: unset;
+}
+
+// フォームアイテムのスタイル
+@mixin form_item {
+  color: var(--color-form-item);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--border-form-item);
+  background-color: var(--bg-form-item);
+  font-size: var(--fs-form-item);
+  display: block;
+  width: 100%;
+  padding: 12px;
+  appearance: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  width: 100%;
+  text-align: left;
+
+  &::placeholder {
+    color: var(--color-form-item-placeholder);
+  }
+
+  @include hover {
+    @include form_item_active;
+  }
+
+  &:focus {
+    @include form_item_active;
+  }
+}

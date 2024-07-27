@@ -1,11 +1,6 @@
 <?php
 
-if(is_page('contact')){
-  add_action( 'wp_enqueue_scripts', function () {
-    wp_enqueue_style( 'form-common', get_theme_file_uri( '/lib/common/form/css/style.css' ), [], 0);
-    wp_enqueue_script( 'form-common', get_theme_file_uri( '/lib/common/form/js/scripts.js' ), ['jquery'], 0);
-  });
-}
+if(is_page('contact')) form_enqueue_scripts();
 
 get_header();
 ?>

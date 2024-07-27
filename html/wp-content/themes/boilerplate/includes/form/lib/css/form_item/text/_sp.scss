@@ -1,0 +1,10 @@
+@use "sass:math";
+@use "../../mixin" as *;
+
+
+@include mq(sp){
+
+  .wpcf7-text{
+    @include form_item;
+  }
+}

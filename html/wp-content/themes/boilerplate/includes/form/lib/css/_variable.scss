@@ -1,0 +1,24 @@
+@use "sass:math";
+@use "sass:color";
+
+// --------------------------------------
+// カラー
+// --------------------------------------
+$colorBlack: #000 !default;
+$colorWhite: #fff !default;
+$colorVeryLightGrey: #cccccc !default;
+$colorSherpaBlue: #055160 !default;
+$colorPohutukawa: #5f071c !default;
+$colorOnahau: #cff4fc !default;
+$colorSkyBlue: #81c3e2 !default;
+$colorSkyBlueRgb: (
+  color.red($colorSkyBlue),
+  color.green($colorSkyBlue),
+  color.blue($colorSkyBlue)
+) !default;
+$colorPinkLace: #fbd0da !default;
+
+// --------------------------------------
+// フォントサイズ
+// --------------------------------------
+$font_size_default: 16px !default;

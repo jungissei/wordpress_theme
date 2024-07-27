@@ -55,33 +55,62 @@ add_filter( 'automatic_updater_disabled', '__return_true' );
 // Includes
 // ----------------------------------------------------------------------------
 
-if (function_exists('is_plugin_active') === false) {
-  include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+// ----------------------------------------------------------------------------
+// Includes
+// ----------------------------------------------------------------------------
+(function() {
+
+  // インクルードファイルクラス名の配列
+  $class_names = [
+    'post_type',
+    'acf',
+    'admin_menu',
+    'admin_bar_menu',
+    'dashboard_widget',
+    'admin-post-list',
+    'form',
+  ];
+
+  // インクルードファイルのパス
+  $includes_path = get_stylesheet_directory() . '/includes/';
+
+  // 各クラスファイルをインクルード
+  foreach ($class_names as $class_name) {
+    include_class_file($class_name, $includes_path);
+  }
+})();
+
+/**
+ * 指定されたクラスファイルをインクルードし、成功したらtrueを返す
+ * @param string $class_name クラス名
+ * @param string $includes_path インクルードファイルのパス
+ * @return bool インクルード成功時にtrueを返す
+ */
+function include_class_file($class_name, $includes_path) {
+  return include_file_if_exists($class_name . '/' . $class_name . '.php', $includes_path)
+    || include_file_if_exists($class_name . '.php', $includes_path);
 }
 
-// Setting post types
-require_once(get_stylesheet_directory().'/includes/post_types_taxonomy_term.php');
+/**
+ * 指定されたパスのファイルが存在すればインクルードし、成功したらtrueを返す
+ * @param string $file_path ファイルパス
+ * @param string $includes_path インクルードファイルのパス
+ * @return bool インクルード成功時にtrueを返す
+ */
+function include_file_if_exists($file_path, $includes_path) {
 
-// Setting Gutenberg
-require_once(get_stylesheet_directory().'/includes/gutenberg/index.php');
+  $full_path = $includes_path . $file_path;
 
-// Setting ACF
-require_once(get_stylesheet_directory().'/includes/acf/index.php');
+  if (file_exists($full_path)) {
+    require_once($full_path);
+    return true;
+  }
 
-// Setting admin menu
-require_once(get_stylesheet_directory().'/includes/admin_menu.php');
+  return false;
+}
 
-// Setting admin bar menu
-require_once(get_stylesheet_directory().'/includes/admin_bar_menu.php');
 
-// Setting dashboard widget
-require_once(get_stylesheet_directory().'/includes/dashboard_widget.php');
 
-// Setting 管理画面の記事一覧
-require_once(get_stylesheet_directory().'/includes/admin-post-list.php');
-
-// Setting 管理画面の記事一覧
-require_once(get_stylesheet_directory().'/includes/contact-form-7.php');
 
 
 // ----------------------------------------------------------------------------

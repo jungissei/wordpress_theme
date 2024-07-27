@@ -1,0 +1,33 @@
+// --------------------------------------
+// base
+// --------------------------------------
+@use "./common" as *;
+
+// --------------------------------------
+// Components
+// --------------------------------------
+// 全般
+@use "./general/pc" as *;
+@use "./general/sp" as *;
+
+// Table
+@use "./table/pc" as *;
+@use "./table/sp" as *;
+
+// Text
+@use "./text/pc" as *;
+@use "./text/sp" as *;
+
+// Radio
+@use "./radio/common" as *;
+@use "./radio/pc" as *;
+@use "./radio/sp" as *;
+
+// Message
+@use "./message/pc" as *;
+@use "./message/sp" as *;
+
+// Submit
+@use "./submit/pc" as *;
+@use "./submit/sp" as *;
+
