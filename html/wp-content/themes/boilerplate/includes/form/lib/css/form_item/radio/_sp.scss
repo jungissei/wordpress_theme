@@ -3,5 +3,116 @@
 
 @include mq(sp){
 
+  .wpcf7-radio {
+    // --------------------------------------
+    // Base
+    // --------------------------------------
+    padding-top: 15px;
+    display: block;
 
+    .wpcf7-list-item {
+      margin: 0;
+
+      label {
+        display: block;
+        position: relative;
+        cursor: pointer;
+
+        input[type="radio"] {
+          position: absolute;
+          top: -100%;
+          left: -100%;
+          opacity: 0;
+
+          + .wpcf7-list-item-label {
+            display: inline-block;
+            position: relative;
+            line-height: 1.65;
+            padding-left: 1.5em;
+
+            &::before {
+              border: 1px solid var(--color-radio-border);
+              background-color: var(--color-radio-bg);
+              position: absolute;
+              top: 3px;
+              left: 0;
+              content: "";
+              width: 20px;
+              height: 20px;
+              border-radius: 50%;
+              transition: border 0.2s, box-shadow 0.2s;
+            }
+
+            &::after {
+              background-color: var(--color-radio-active);
+              position: absolute;
+              top: 7px;
+              left: 4px;
+              content: "";
+              width: 1em;
+              height: 1em;
+              width: 12px;
+              height: 12px;
+              transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+              transform: scale(0, 0);
+              border-radius: 50%;
+            }
+
+            @include hover{
+              &::before {
+                border: 1px solid var(--color-radio-active);
+                box-shadow: 0 0 0 3px rgba(var(--color-radio-active-rgb), 0.5);
+              }
+            }
+          }
+
+          &:focus{
+            + .wpcf7-list-item-label {
+
+              &::before {
+                border: 1px solid var(--color-radio-active);
+                box-shadow: 0 0 0 3px rgba(var(--color-radio-active-rgb), 0.5);
+              }
+            }
+          }
+
+
+          &:checked {
+            + .wpcf7-list-item-label {
+              &::after {
+                transform: scale(1, 1);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // --------------------------------------
+    // 縦並び
+    // --------------------------------------
+    &.item_block,
+    &.item_block_sp{
+      .wpcf7-list-item {
+        display: block;
+
+        &:not(:last-child){
+          margin-bottom: 8px;
+        }
+      }
+    }
+
+    // --------------------------------------
+    // 横並び
+    // --------------------------------------
+    &:not(.item_block):not(.item_block_sp){
+      .wpcf7-list-item {
+        display: inline-block;
+
+        &:not(:last-child){
+          margin-right: 20px;
+        }
+      }
+    }
+  }
 }

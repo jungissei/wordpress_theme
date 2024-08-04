@@ -15,19 +15,22 @@
 @use "./table/sp" as *;
 
 // Text
-@use "./text/pc" as *;
-@use "./text/sp" as *;
+@use "./form_item/text/pc" as *;
+@use "./form_item/text/sp" as *;
 
 // Radio
-@use "./radio/common" as *;
-@use "./radio/pc" as *;
-@use "./radio/sp" as *;
+@use "./form_item/radio/pc" as *;
+@use "./form_item/radio/sp" as *;
+
+// Checkbox
+@use "./form_item/checkbox/pc" as *;
+@use "./form_item/checkbox/sp" as *;
 
 // Message
-@use "./message/pc" as *;
-@use "./message/sp" as *;
+@use "./form_item/message/pc" as *;
+@use "./form_item/message/sp" as *;
 
 // Submit
-@use "./submit/pc" as *;
-@use "./submit/sp" as *;
+@use "./form_item/submit/pc" as *;
+@use "./form_item/submit/sp" as *;
 

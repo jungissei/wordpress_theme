@@ -32,6 +32,12 @@
   --color-radio-border: #{$colorVeryLightGrey};
   --color-radio-bg: #{$colorWhite};
 
+  // チェックボックス
+  --color-checkbox-active: #{$colorSkyBlue};
+  --color-checkbox-active-rgb: #{$colorSkyBlueRgb};
+  --color-checkbox-border: #{$colorVeryLightGrey};
+  --color-checkbox-bg: #{$colorWhite};
+
   // 送信ボタン
   --color-form-submit: #{$colorWhite};
   --bg-form-submit: #{$colorBlack};

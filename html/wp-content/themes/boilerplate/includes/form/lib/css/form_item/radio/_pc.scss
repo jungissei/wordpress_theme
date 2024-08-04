@@ -91,6 +91,7 @@
     // --------------------------------------
     // 縦並び
     // --------------------------------------
+    &.item_block,
     &.item_block_pc{
       .wpcf7-list-item {
         display: block;
@@ -104,7 +105,7 @@
     // --------------------------------------
     // 横並び
     // --------------------------------------
-    &:not(.item_block_pc){
+    &:not(.item_block):not(.item_block_pc){
       .wpcf7-list-item {
         display: inline-block;
 
