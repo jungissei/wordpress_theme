@@ -26,6 +26,10 @@
 @use "./form_item/checkbox/pc" as *;
 @use "./form_item/checkbox/sp" as *;
 
+// File
+@use "./form_item/file/pc" as *;
+@use "./form_item/file/sp" as *;
+
 // Message
 @use "./form_item/message/pc" as *;
 @use "./form_item/message/sp" as *;
