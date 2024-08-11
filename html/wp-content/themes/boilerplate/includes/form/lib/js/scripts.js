@@ -49,6 +49,8 @@ function initialize_file_inputs($input_items) {
     const $input = $(this);
     const $wrapper = $input.closest('[data-form-file="wrapper"]');
     const $file_text = $wrapper.find('[data-form-file-text-default]');
+
+    $file_text.attr('data-form-file-text-default', $file_text.text());
     const default_text = $file_text.attr('data-form-file-text-default');
 
     // 初期状態の設定
