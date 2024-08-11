@@ -71,7 +71,7 @@ function initialize_file_inputs($input_items) {
  */
 function set_file_text_state($file_text, text, is_no_value) {
   $file_text.text(text);
-  $file_text.toggleClass('no-value', is_no_value);
+  $file_text.toggleClass('no_value', is_no_value);
 }
 
 /**
@@ -121,33 +121,39 @@ function trigger_file_input() {
 // --------------------------------------
 // Select
 // --------------------------------------
+
 /**
- * Change text color when input file is empty
+ * セレクトボックスの初期化と動作設定を行う
  */
 $(function () {
-  let select = $('.form_wrp .form_select select');
+  const $select = $('.wpcf7-select');
 
-  control_select_txt_color(select);
+  // 初期状態のテキストカラーを制御
+  control_select_text_color($select);
 
-  select.on('focus', function () {
-    select.css('color', '');
+  // フォーカス時の処理
+  $select.on('focus', function () {
+    $(this).removeClass('no_value');
   });
 
-  select.on('blur change', function () {
-    control_select_txt_color($(this));
+  // ブラーまたは値変更時の処理
+  $select.on('blur change', function () {
+    control_select_text_color($(this));
   });
 });
 
 /**
- * @param {object} select
+ * セレクトボックスのテキストカラーを制御する
+ * @param {jQuery} $select セレクトボックスのjQueryオブジェクト
  */
-function control_select_txt_color(select) {
-  if (select.val() == '') {
-    select.css('color', '#757575');
-    return;
+function control_select_text_color($select) {
+  // 値が空の場合、no_valueクラスを追加
+  if ($select.val() === '') {
+    $select.addClass('no_value');
+  } else {
+    // 値がある場合、no_valueクラスを削除
+    $select.removeClass('no_value');
   }
-
-  select.css('color', '');
 }
 
 

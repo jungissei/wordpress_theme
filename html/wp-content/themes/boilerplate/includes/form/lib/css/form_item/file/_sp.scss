@@ -36,7 +36,7 @@
         padding-bottom: 3px; // Add some padding to prevent cutting off descenders
         line-height: 1.2; // Increase line height slightly
 
-        &.no-value{
+        &.no_value{
           color: var(--color-file-name-no-value);
         }
       }

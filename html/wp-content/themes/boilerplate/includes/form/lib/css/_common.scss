@@ -38,6 +38,10 @@
   --color-checkbox-border: #{$colorVeryLightGrey};
   --color-checkbox-bg: #{$colorWhite};
 
+  // セレクトボックス
+  --color-select-name-no-value: #{$colorMediumGray};
+  --color-select-arrow: #{$colorBlack};
+
   // ファイルアップロード
   --color-file-active: #{$colorSkyBlue};
   --color-file-active-rgb: #{$colorSkyBlueRgb};
