@@ -3,21 +3,17 @@ jQuery(function($){
 // ----------------------------------------------------------------------------
 // 【Table Of Content】
 //
-// Form
+// 必須 or 任意のラベル追加
+// Input File
+// Select
+// Address (yubinbango)
+// Input Date (flatpickr)
+// Privacy policy
 // ----------------------------------------------------------------------------
 
 
-// ----------------------------------------------------------------------------
-// Form
-//    Input File
-//    Select
-//    Address (yubinbango)
-//    Input Date (flatpickr)
-//    Privacy policy
-//    jquery-validation
-// ----------------------------------------------------------------------------
 // --------------------------------------
-// Form label
+// 必須 or 任意のラベル追加
 // --------------------------------------
 $('.wpcf7-form .table_th').each(function () {
 
@@ -35,59 +31,89 @@ $('.wpcf7-form .table_th').each(function () {
 // Input File
 // --------------------------------------
 $(function () {
-  let $input = $('.form_file input[type="file"]');
+  let $input_items = $('[data-form-file="wrapper"] input[type="file"]');
 
-  if ($input.length > 0) {
+  if ($input_items.length > 0) {
 
-    add_default_text_to_input_file($input);
-    change_text_input_file_text_color($input);
+    initialize_file_inputs($input_items);
+    add_file_input_event_to_button();
   }
 });
 
 /**
- * Add default text when input file is empty
+ * ファイル入力フィールドの初期化と変更イベントの処理を行う
+ * @param {jQuery} $input_items ファイル入力フィールドの jQuery オブジェクト
  */
-function add_default_text_to_input_file($input) {
-  let form_file_name_default = '選択されていません';
+function initialize_file_inputs($input_items) {
+  $input_items.each(function() {
+    const $input = $(this);
+    const $wrapper = $input.closest('[data-form-file="wrapper"]');
+    const $file_text = $wrapper.find('[data-form-file-text-default]');
+    const default_text = $file_text.attr('data-form-file-text-default');
 
-  $('.form_file .label_file_name').text(form_file_name_default);
+    // 初期状態の設定
+    set_file_text_state($file_text, default_text, true);
 
-  $input.on('change', function () {
-
-    let form_file_name = $(this).val() ?
-      $(this).val() : form_file_name_default;
-
-    $(this).closest('.form_file').find('.label_file_name').text(form_file_name);
+    $input.on('change', function() {
+      const file_name = $input.val() ? get_file_name($input.val()) : default_text;
+      set_file_text_state($file_text, file_name, !$input.val());
+    });
   });
+}
+
+/**
+ * ファイルテキスト要素の状態を設定する
+ * @param {jQuery} $file_text ファイルテキスト要素の jQuery オブジェクト
+ * @param {string} text 表示するテキスト
+ * @param {boolean} is_no_value 値がない状態かどうか
+ */
+function set_file_text_state($file_text, text, is_no_value) {
+  $file_text.text(text);
+  $file_text.toggleClass('no-value', is_no_value);
+}
+
+/**
+ * ファイルパスからファイル名を取得する
+ * @param {string} file_path ファイルパス
+ * @return {string} ファイル名
+ */
+function get_file_name(file_path) {
+  return file_path.split('\\').pop();
 }
 
 
 /**
- * Change text color when input file is empty
+ * ファイル入力ボタンにクリックイベントとキーボードイベントを追加。
  */
-function change_text_input_file_text_color($input) {
+function add_file_input_event_to_button() {
+  const $file_buttons = $('button[data-form-file-for]');
 
-  $input.each(function () {
-    control_input_txt_color($(this));
-  });
+  // クリックイベントの追加
+  $file_buttons.on('click', trigger_file_input);
 
-  $input.on('change', function () {
-    control_input_txt_color($(this));
+  // キーボードイベントの追加
+  $file_buttons.on('keydown', function(event) {
+    // スペースキー(32)またはエンターキー(13)が押された場合
+    if (event.keyCode === 32 || event.keyCode === 13) {
+      event.preventDefault();
+      trigger_file_input.call(this);
+    }
   });
 }
 
-
 /**
- * @param {object} $input
+ * 関連するファイル入力フィールドをトリガー。
  */
-function control_input_txt_color($input) {
-  if ($input.val() == '') {
-    $input.closest('.form_file').find('.form_file_name').css('color', '#757575');
-    return;
+function trigger_file_input() {
+  const $button = $(this);
+  const input_id = $button.attr('data-form-file-for');
+  const $input = $('#' + input_id);
+
+  if ($input.length) {
+    $input.trigger('click');
   }
-
-  $input.closest('.form_file').find('.form_file_name').css('color', '');
 }
+
 
 
 // --------------------------------------
@@ -209,181 +235,6 @@ $('#privacy_checkbox').on('change', function () {
   $('#form_submit').attr('disabled', true)
   return;
 });
-
-
-// --------------------------------------
-// jquery-validation
-// --------------------------------------
-/**
- * @return {object} rules valid group rules
- *   ex) ['required_all', 'required_tel', 'required_checkbox']
- */
-function get_valid_group_rules() {
-
-  let rules = [];
-
-  $('[data-valid-group]').each(function () {
-
-    let group = $(this).data('valid-group');
-    if (rules.indexOf(group) < 0) rules.push(group);
-  });
-
-  return rules;
-}
-
-/**
- * @param {object} rules valid group rules
- * ex : ['required_all', 'required_tel', 'required_checkbox']
- * @return {object} groups valid groups
- * ex :
- *    {
- *      required_1 : 'family_name1 given_name1',
- *      required_2 : 'family_name2 given_name2',
- *      required_tel : 'tel1 tel2 tel3'
- *    }
- */
-function get_validate_params_groups(rules) {
-
-  let = groups = {};
-
-  $.each(rules, function (rule_index, rule) {
-
-    $('[data-valid-group="' + rule + '"]').each(function (group_index) {
-
-      groups[rule + '_' + group_index] = get_valid_group_names($(this));
-    });
-  });
-
-  return groups;
-}
-
-
-/**
- * @param {object} $group jQuery object
- * @return {string} names
- * ex : 'family_name1 given_name1'
- */
-function get_valid_group_names($group) {
-
-  let names = '';
-
-  $group.find('[data-valid-group-item]').each(function (index) {
-
-    if (index > 0) names += ' ';
-    names += $(this).attr('name');
-  });
-
-  return names;
-}
-
-
-/**
- * @param {object} rules valid group rules
- * ex : ['required_all', 'required_tel', 'required_checkbox']
- */
-function add_rule_to_valid_groups(rules) {
-
-  $.each(rules, function (rule_index, rule) {
-
-    $('[data-valid-group="' + rule + '"]').each(function () {
-
-      add_rule_to_valid_group[rule].bind(this)();
-    });
-  });
-}
-
-
-let add_rule_to_valid_group = {
-  // all required
-  'required_all': function () {
-
-    let $items = $(this).find('[data-valid-group-item]');
-
-    $items.each(function () {
-
-      $(this).rules('add', {
-        require_from_group: [$items.length, '[data-valid-group-item]'],
-        messages: {
-          require_from_group: 'このフィールドは必須です。'
-        }
-      });
-    });
-  },
-  'required_all_tel': function () {
-
-    let $items = $(this).find('[data-valid-group-item]');
-
-    $items.each(function () {
-      $(this).rules('add', {
-        number: true,
-        require_from_group: [$items.length, '[data-valid-group-item]'],
-        messages: {
-          number: '電話番号を入力してください。',
-          require_from_group: 'このフィールドは必須です。'
-        }
-      });
-    });
-  },
-  'required_checkbox': function () {
-
-
-  }
-};
-
-
-// Add Validation rule
-let add_rule_to_valid_item = [
-  function () {
-
-    $input = $('#area_form input[type="email"]');
-    if ($input.length === 0) return;
-
-    $input.rules('add', {
-      email: true,
-      messages: {
-        email: 'メールアドレスを入力してください。'
-      }
-    });
-  },
-  function () {
-
-    $input = $('#area_form input[data-double-check-for]');
-    if ($input.length === 0) return;
-
-    $input.each(function () {
-
-      $(this).rules('add', {
-        equalTo: $(this).data('double-check-for'),
-        messages: {
-          equalTo: '同じメールアドレスを入力してください。'
-        }
-      });
-    });
-  },
-  function () {
-
-    $input = $('#area_form input[type="tel"]');
-    if ($input.length === 0) return;
-
-    $input.each(function () {
-
-      $(this).rules('add', {
-        number: true,
-        messages: {
-          number: '電話番号を入力してください。'
-        }
-      });
-    });
-  }
-];
-
-$('#area_form').on('after.validate_setting', function () {
-
-  for (let i = 0; i < add_rule_to_valid_item.length; i++) {
-    add_rule_to_valid_item[i].bind()();
-  }
-})
-
 
 
 });

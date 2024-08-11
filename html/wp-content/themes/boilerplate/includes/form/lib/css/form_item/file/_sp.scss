@@ -2,36 +2,67 @@
 @use "../../mixin" as *;
 
 @include mq(sp){
-  .wpcf7-file{
+  .form_file{
     padding-top: 15px;
-    margin-left: -15px;
-    margin-bottom: -15px;
-    padding-left: 15px;
-    padding-bottom: 15px;
+    .file_wrap{
+      display: flex;
+      align-items: flex-start;
 
-    &::file-selector-button{
-      border: 1px solid var(--color-file-border);
-      background-color: var(--color-file-bg);
-      padding: 8px;
-      transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-      cursor: pointer;
-      text-align: center;
-      margin-right: 10px;
-    }
+      .file_button{
+        flex-shrink: 0;
+        border: 1px solid var(--color-file-border);
+        background-color: var(--color-file-bg);
+        padding: 8px;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        cursor: pointer;
+        text-align: center;
+        display: inline-block;
+        margin-right: 10px;
 
-    &:focus{
-      &::file-selector-button{
-        border: 1px solid var(--color-file-active);
-        box-shadow: 0 0 0 4px rgba(var(--color-file-active-rgb), 0.5);
+        @include hover{
+          border: 1px solid var(--color-file-active);
+          box-shadow: 0 0 0 4px rgba(var(--color-file-active-rgb), 0.5);
+        }
+      }
+
+      .file_name{
+        flex-grow: 1;
+        margin-top: 8px;
+        word-break: break-all;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 100%;
+        padding-bottom: 3px; // Add some padding to prevent cutting off descenders
+        line-height: 1.2; // Increase line height slightly
+
+        &.no-value{
+          color: var(--color-file-name-no-value);
+        }
       }
     }
 
-    @include hover{
-      &::file-selector-button{
+    .wpcf7-form-control-wrap{
+      position: relative;
+      overflow: hidden;
+
+      .wpcf7-file{
+        position: absolute;
+        top: -200%;
+        left: -200%;
+        outline: 0;
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+    }
+
+
+    &:has(.wpcf7-file:hover){
+      .file_button{
         border: 1px solid var(--color-file-active);
         box-shadow: 0 0 0 4px rgba(var(--color-file-active-rgb), 0.5);
       }
     }
   }
-
 }
