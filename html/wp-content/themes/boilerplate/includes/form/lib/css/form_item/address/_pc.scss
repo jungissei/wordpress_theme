@@ -1,0 +1,48 @@
+@use "sass:math";
+@use "../../mixin" as *;
+
+@include mq(pc){
+
+  .form_address_group{
+
+    .group_postal_code{
+      margin-bottom: 13px;
+
+      .postal_code_label{
+        margin-bottom: 6px;
+        display: block;
+        font-size: 14px;
+      }
+
+      .postal_code_input_row{
+        display: flex;
+        align-items: center;
+
+        .postal_code_input_col{
+          width: 10em;
+          position: relative;
+          padding-left: 1.5em;
+
+          &::before {
+            position: absolute;
+            top: .8em;
+            left: 0;
+            content: "〒";
+          }
+        }
+
+        .postal_code_button_col{
+          padding-left: .5em;
+
+          .postal_code_button{
+
+          }
+        }
+      }
+    }
+
+    .group_address{
+
+    }
+  }
+}

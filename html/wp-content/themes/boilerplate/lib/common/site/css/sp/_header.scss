@@ -1,0 +1,10 @@
+@use "sass:math";
+@use "./settings" as *;
+@use "../../../mixin" as *;
+
+@include mq($device){
+
+  header{
+    height: 75px;
+  }
+}

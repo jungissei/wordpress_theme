@@ -1,0 +1,34 @@
+@use "sass:math";
+@use "../../mixin" as *;
+
+@include mq(sp){
+
+  .wpcf7-form-control-wrap:has(.wpcf7-select) {
+    position: relative;
+
+    &::after{
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-left: 3px solid var(--color-select-arrow);
+      border-bottom: 3px solid var(--color-select-arrow);
+      position: absolute;
+      top: 16px;
+      right: 10px;
+      transform: rotate(-45deg);
+      pointer-events: none;
+    }
+
+    .wpcf7-select {
+      @include form_item;
+      padding-right: 28px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+
+      &.no_value {
+        color: var(--color-select-name-no-value);
+      }
+    }
+  }
+}

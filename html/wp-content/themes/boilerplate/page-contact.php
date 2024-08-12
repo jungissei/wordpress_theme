@@ -1,4 +1,10 @@
 <?php
+/**
+ * Template Name: お問い合わせページ
+ */
+
+
+form_enqueue_scripts();
 
 get_header();
 ?>

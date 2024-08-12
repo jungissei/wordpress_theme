@@ -1,0 +1,116 @@
+@use "sass:math";
+@use "../../mixin" as *;
+
+@include mq(pc){
+
+  .wpcf7-checkbox {
+    padding-top: 15px;
+    display: block;
+
+    .wpcf7-list-item {
+      margin: 0;
+
+      label {
+        display: block;
+        position: relative;
+        cursor: pointer;
+        overflow: hidden;
+        padding-left: 3px;
+        margin-left: -3px;
+
+        input[type="checkbox"] {
+          position: absolute;
+          top: -100%;
+          left: -100%;
+          opacity: 0;
+
+          + .wpcf7-list-item-label {
+            display: inline-block;
+            position: relative;
+            line-height: 1.65;
+            padding-left: 1.5em;
+
+            &::before {
+              position: absolute;
+              top: 3px;
+              left: 0;
+              content: "";
+              width: 20px;
+              height: 20px;
+              border: 1px solid var(--color-checkbox-border);
+              background: var(--color-checkbox-bg);
+            }
+
+            &::after {
+              display: block;
+              position: absolute;
+              top: 3px;
+              left: 6px;
+              content: "";
+              width: 8px;
+              height: 15px;
+              border-right: 3px solid var(--color-checkbox-active);
+              border-bottom: 3px solid var(--color-checkbox-active);
+              transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+              transform: scale(0, 0) rotate(43deg);
+            }
+
+            @include hover{
+              &::before {
+                border: 1px solid var(--color-checkbox-active);
+                box-shadow: 0 0 0 3px rgba(var(--color-checkbox-active-rgb), 0.5);
+              }
+            }
+          }
+
+          &:focus{
+            + .wpcf7-list-item-label {
+
+              &::before {
+                border: 1px solid var(--color-checkbox-active);
+                box-shadow: 0 0 0 3px rgba(var(--color-checkbox-active-rgb), 0.5);
+              }
+            }
+          }
+
+          &:checked {
+            + .wpcf7-list-item-label {
+              &::after {
+                transform: scale(1, 1) rotate(43deg);
+              }
+            }
+          }
+        }
+      }
+    }
+
+
+    // --------------------------------------
+    // 縦並び
+    // --------------------------------------
+    &.item_block,
+    &.item_block_pc{
+      .wpcf7-list-item {
+        display: block;
+
+        &:not(:last-child){
+          margin-bottom: 8px;
+        }
+      }
+    }
+
+    // --------------------------------------
+    // 横並び
+    // --------------------------------------
+    &:not(.item_block):not(.item_block_pc){
+      .wpcf7-list-item {
+        display: inline-block;
+
+        &:not(:last-child){
+          margin-right: 20px;
+        }
+      }
+    }
+
+  }
+}

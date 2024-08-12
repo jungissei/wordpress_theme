@@ -1,0 +1,66 @@
+@use "sass:math";
+@use "sass:color";
+@use "./variable" as *;
+@use "./mixin" as *;
+
+
+.wpcf7-form {
+
+  // フォームブロックの背景色
+  --bg-form-block: #{$colorWhite};
+
+  // 任意入力用ラベル
+  --color-form-label-option: #{$colorSherpaBlue};
+  --bg-form-label-option: #{$colorOnahau};
+
+  // 必須入力用ラベル
+  --color-form-label-require: #{$colorPohutukawa};
+  --bg-form-label-require: #{$colorPinkLace};
+
+
+  // フォームアイテム
+  --fs-form-item: $font_size_default;
+  --color-form-item: #{$colorBlack};
+  --color-form-item-placeholder: #{$colorVeryLightGrey};
+  --bg-form-item: #{$colorWhite};
+  --border-form-item: #{$colorVeryLightGrey};
+  --border-form-item-active: #{$colorSkyBlueRgb};
+
+  // ラジオボタン
+  --color-radio-active: #{$colorSkyBlue};
+  --color-radio-active-rgb: #{$colorSkyBlueRgb};
+  --color-radio-border: #{$colorVeryLightGrey};
+  --color-radio-bg: #{$colorWhite};
+
+  // チェックボックス
+  --color-checkbox-active: #{$colorSkyBlue};
+  --color-checkbox-active-rgb: #{$colorSkyBlueRgb};
+  --color-checkbox-border: #{$colorVeryLightGrey};
+  --color-checkbox-bg: #{$colorWhite};
+
+  // セレクトボックス
+  --color-select-name-no-value: #{$colorMediumGray};
+  --color-select-arrow: #{$colorBlack};
+
+  // ファイルアップロード
+  --color-file-active: #{$colorSkyBlue};
+  --color-file-active-rgb: #{$colorSkyBlueRgb};
+  --color-file-name-no-value: #{$colorMediumGray};
+
+
+  // フォーム共通ボタン
+  // form_common_button1
+  --color-form-common-button-border: #{$colorVeryLightGrey};
+  --color-form-common-button-bg: #{$colorWhite};
+  --color-form-common-button-active: #{$colorSkyBlue};
+  --color-form-common-button-active-rgb: #{$colorSkyBlueRgb};
+
+
+  // 送信ボタン
+  --color-form-submit: #{$colorWhite};
+  --bg-form-submit: #{$colorBlack};
+
+
+  // プライバシーポリシー
+  --color-privacy-box-border: #{$colorVeryLightGrey};
+}

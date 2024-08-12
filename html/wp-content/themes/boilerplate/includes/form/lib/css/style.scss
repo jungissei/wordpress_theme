@@ -1,0 +1,60 @@
+// --------------------------------------
+// base
+// --------------------------------------
+@use "./common" as *;
+
+// --------------------------------------
+// Components
+// --------------------------------------
+// 全般
+@use "./general/pc" as *;
+@use "./general/sp" as *;
+
+// Table
+@use "./table/pc" as *;
+@use "./table/sp" as *;
+
+// Text
+@use "./form_item/text/pc" as *;
+@use "./form_item/text/sp" as *;
+
+// Textarea
+@use "./form_item/textarea/pc" as *;
+@use "./form_item/textarea/sp" as *;
+
+// Date
+@use "./form_item/date/pc" as *;
+@use "./form_item/date/sp" as *;
+
+// Radio
+@use "./form_item/radio/pc" as *;
+@use "./form_item/radio/sp" as *;
+
+// Checkbox
+@use "./form_item/checkbox/pc" as *;
+@use "./form_item/checkbox/sp" as *;
+
+// File
+@use "./form_item/file/pc" as *;
+@use "./form_item/file/sp" as *;
+
+// Select
+@use "./form_item/select/pc" as *;
+@use "./form_item/select/sp" as *;
+
+// Address
+@use "./form_item/address/pc" as *;
+@use "./form_item/address/sp" as *;
+
+// Message
+@use "./form_item/message/pc" as *;
+@use "./form_item/message/sp" as *;
+
+// Button
+@use "./form_item/button/pc" as *;
+@use "./form_item/button/sp" as *;
+
+// Privacy
+@use "./form_item/privacy/pc" as *;
+@use "./form_item/privacy/sp" as *;
+

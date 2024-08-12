@@ -1,0 +1,21 @@
+@use "sass:math";
+@use "../mixin" as *;
+
+
+@include mq(sp){
+
+  // --------------------------------------
+  // Block form
+  // --------------------------------------
+  .wpcf7-form{
+    background-color: var(--bg-form-block);
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  .wpcf7-form-control-wrap{
+    display: block;
+  }
+}
