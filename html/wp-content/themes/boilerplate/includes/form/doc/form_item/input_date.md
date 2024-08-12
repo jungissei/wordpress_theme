@@ -1,3 +1,14 @@
+
+## 必要プラグイン
+```php
+// flatpickr
+wp_enqueue_style( 'flatpickr', get_theme_file_uri( '/includes/form/lib/js/flatpickr/flatpickr.css' ), [], $form_assets_version);
+wp_enqueue_script( 'flatpickr', get_theme_file_uri( '/includes/form/lib/js/flatpickr/flatpickr.js' ), ['jquery'], $form_assets_version);
+wp_enqueue_script( 'flatpickr-ja', get_theme_file_uri( '/includes/form/lib/js/flatpickr/ja.js' ), ['jquery'], $form_assets_version);
+```
+
+
+## HTML
 ```html
 <!-- .table_tr ここから -->
 <div class="table_tr">
