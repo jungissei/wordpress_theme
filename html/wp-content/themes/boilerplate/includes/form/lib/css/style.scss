@@ -18,6 +18,10 @@
 @use "./form_item/text/pc" as *;
 @use "./form_item/text/sp" as *;
 
+// Textarea
+@use "./form_item/textarea/pc" as *;
+@use "./form_item/textarea/sp" as *;
+
 // Date
 @use "./form_item/date/pc" as *;
 @use "./form_item/date/sp" as *;
