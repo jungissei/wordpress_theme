@@ -13,6 +13,13 @@ function form_enqueue_scripts() {
 
     $form_assets_version = 1;
 
+    // flatpickr
+    wp_enqueue_style( 'flatpickr', get_theme_file_uri( '/includes/form/lib/js/flatpickr/flatpickr.css' ), [], $form_assets_version);
+    wp_enqueue_script( 'flatpickr', get_theme_file_uri( '/includes/form/lib/js/flatpickr/flatpickr.js' ), ['jquery'], $form_assets_version);
+    wp_enqueue_script( 'flatpickr-ja', get_theme_file_uri( '/includes/form/lib/js/flatpickr/ja.js' ), ['jquery'], $form_assets_version);
+
+
+    // フォーム共通
     wp_enqueue_style( 'form-common', get_theme_file_uri( '/includes/form/lib/css/style.css' ), [], $form_assets_version);
     wp_enqueue_script( 'form-common', get_theme_file_uri( '/includes/form/lib/js/scripts.js' ), ['jquery'], $form_assets_version);
   });
