@@ -49,6 +49,15 @@
   --color-file-bg: #{$colorWhite};
   --color-file-name-no-value: #{$colorMediumGray};
 
+
+  // フォーム共通ボタン
+  // form_common_button1
+  --color-form-common-button-border: #{$colorVeryLightGrey};
+  --color-form-common-button-bg: #{$colorWhite};
+  --color-form-common-button-active: #{$colorSkyBlue};
+  --color-form-common-button-active-rgb: #{$colorSkyBlueRgb};
+
+
   // 送信ボタン
   --color-form-submit: #{$colorWhite};
   --bg-form-submit: #{$colorBlack};

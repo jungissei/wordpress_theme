@@ -38,11 +38,15 @@
 @use "./form_item/select/pc" as *;
 @use "./form_item/select/sp" as *;
 
+// Address
+@use "./form_item/address/pc" as *;
+@use "./form_item/address/sp" as *;
+
 // Message
 @use "./form_item/message/pc" as *;
 @use "./form_item/message/sp" as *;
 
-// Submit
-@use "./form_item/submit/pc" as *;
-@use "./form_item/submit/sp" as *;
+// Button
+@use "./form_item/button/pc" as *;
+@use "./form_item/button/sp" as *;
 

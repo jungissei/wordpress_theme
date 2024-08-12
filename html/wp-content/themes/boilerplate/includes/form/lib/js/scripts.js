@@ -161,41 +161,47 @@ function control_select_text_color($select) {
 // --------------------------------------
 // Address (yubinbango)
 // --------------------------------------
+/**
+ * 郵便番号から住所を自動入力する機能を初期化する
+ */
 (function () {
-
-  let h_adr_all = document.querySelectorAll('.h-adr');
+  const h_adr_all = document.querySelectorAll('.h-adr');
   if (h_adr_all.length === 0) return;
 
   h_adr_all.forEach(function (h_adr) {
-
-    add_address_by_postal_code(h_adr);
+    initialize_address_auto_fill(h_adr);
   });
 })();
 
-function add_address_by_postal_code(h_adr) {
-  let cancel_flag = true,
-    on_keyup_canceller = function (e) {
+/**
+ * 郵便番号から住所を自動入力する機能を設定する
+ * @param {HTMLElement} h_adr 住所入力フォームを含む要素
+ */
+function initialize_address_auto_fill(h_adr) {
+  let is_auto_fill_enabled = true;
+  const postal_code_fields = h_adr.querySelectorAll('.p-postal-code');
+  const postal_field = postal_code_fields[postal_code_fields.length - 1];
 
-      if (cancel_flag) {
-        e.stopImmediatePropagation();
-      }
+  /**
+   * キーアップイベントをキャンセルする関数
+   * @param {Event} e キーアップイベント
+   */
+  const cancel_keyup_event = function (e) {
+    if (is_auto_fill_enabled) {
+      e.stopImmediatePropagation();
+    }
+    return false;
+  };
 
-      return false;
-    },
-    postal_code = h_adr.querySelectorAll('.p-postal-code'),
-    postalField = postal_code[postal_code.length - 1];
+  // 通常の挙動をキャンセルできるようにイベントを追加
+  postal_field.addEventListener('keyup', cancel_keyup_event, false);
 
-  //通常の挙動をキャンセルできるようにイベントを追加
-  postalField.addEventListener('keyup', on_keyup_canceller, false);
-
-
-  //ボタンクリック時
+  // 住所検索ボタンクリック時の処理
   $('.postal-search').on('click', function () {
+    // 自動入力を一時的に有効化
+    is_auto_fill_enabled = false;
 
-    //キャンセルを解除
-    cancel_flag = false;
-
-    //発火
+    // キーアップイベントを発火
     let event;
     if (typeof Event === 'function') {
       event = new Event('keyup');
@@ -203,10 +209,10 @@ function add_address_by_postal_code(h_adr) {
       event = document.createEvent('Event');
       event.initEvent('keyup', true, true);
     }
-    postalField.dispatchEvent(event);
+    postal_field.dispatchEvent(event);
 
-    //キャンセルを戻す
-    cancel_flag = true;
+    // 自動入力を再度無効化
+    is_auto_fill_enabled = true;
   });
 }
 
