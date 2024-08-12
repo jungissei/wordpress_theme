@@ -48,8 +48,7 @@
 
     &:has(.wpcf7-file:hover){
       .file_button{
-        border: 1px solid var(--color-file-active);
-        box-shadow: 0 0 0 4px rgba(var(--color-file-active-rgb), 0.5);
+        @include form_common_button1_active;
       }
     }
   }
