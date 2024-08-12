@@ -11,7 +11,7 @@
         </label>
       </div>
       <div class="table_td">
-        [email* your-email autocomplete:name id:your-email placeholder "example@example.com"]
+        [email* your-email autocomplete:email id:your-email placeholder "example@example.com"]
       </div>
     </div>
     <!-- .table_tr ここまで -->
