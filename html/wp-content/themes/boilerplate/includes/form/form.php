@@ -21,6 +21,10 @@ function form_enqueue_scripts() {
     // yubinbango
     wp_enqueue_script( 'yubinbango', get_theme_file_uri( '/includes/form/lib/js/yubinbango/yubinbango.js' ), ['jquery'], $form_assets_version);
 
+    // simplebar
+    wp_enqueue_style( 'simplebar', get_theme_file_uri( '/includes/form/lib/js/simplebar/simplebar.css' ), [], $form_assets_version);
+    wp_enqueue_script( 'simplebar', get_theme_file_uri( '/includes/form/lib/js/simplebar/simplebar.js' ), ['jquery'], $form_assets_version);
+
 
     // フォーム共通
     wp_enqueue_style( 'form-common', get_theme_file_uri( '/includes/form/lib/css/style.css' ), [], $form_assets_version);
