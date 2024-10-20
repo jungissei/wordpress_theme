@@ -68,6 +68,7 @@ add_filter( 'automatic_updater_disabled', '__return_true' );
   // インクルードファイルクラス名の配列
   $class_names = [
     'post_type',
+    'taxonomy',
     'acf',
     'admin_menu',
     'admin_bar_menu',

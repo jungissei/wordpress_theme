@@ -30,11 +30,11 @@ add_action( 'admin_menu', function () {
    *
    * @see https://qiita.com/sola-msr/items/14848a964b8b3317ae87
    */
-  $terms = get_terms('page-cat', array(
+  $terms = get_terms('page_cat', array(
     'hide_empty'    => false,
   ));
   foreach ( $terms as $term ) {
-    add_submenu_page( 'edit.php?post_type=page', $term->name.'一覧', $term->name.'一覧', 'manage_options', 'edit.php?s&post_status=all&post_type=page&action=-1&m=0&page-cat='.$term->name.'&filter_action=絞り込み&paged=1&action2=-1', '' );
+    add_submenu_page( 'edit.php?post_type=page', $term->name.'一覧', $term->name.'一覧', 'manage_options', 'edit.php?s&post_status=all&post_type=page&action=-1&m=0&page_cat='.$term->name.'&filter_action=絞り込み&paged=1&action2=-1', '' );
   }
 
   //--------------------------------------
